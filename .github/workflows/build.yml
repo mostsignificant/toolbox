@@ -21,3 +21,9 @@ jobs:
         run: wget -qO- https://github.com/thedodd/trunk/releases/download/v0.14.0/trunk-x86_64-unknown-linux-gnu.tar.gz | tar -xzf-
       - name: Run trunk build
         run: ./trunk build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-output
+          path: dist/
+          retention-days: 1
