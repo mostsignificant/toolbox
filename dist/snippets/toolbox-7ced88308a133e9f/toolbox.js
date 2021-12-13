@@ -13,13 +13,13 @@ export function getCurrentUTC() {
 
 export function getMyIP() {
     var data = $.ajax({
-        url: 'http://ip-api.com/json',
+        url: 'https://api.db-ip.com/v2/free/self',
         async: false
     }).responseText;
 
     try {
         var json = JSON.parse(data);
-        return json["query"];
+        return json["ipAddress"];
     } catch (e) {
         return "";
     }

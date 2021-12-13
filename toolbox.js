@@ -19,7 +19,7 @@ export function getMyIP() {
 
     try {
         var json = JSON.parse(data);
-        return json["query"];
+        return json["ipAddress"];
     } catch (e) {
         return "";
     }
