@@ -47,6 +47,7 @@ impl Component for Navbar {
                         <li class="uk-parent"><a href="#numconverter">{ "Numeral Converter" }</a></li>
                         <li class="uk-parent"><a href="#ipcalculator">{ "IP Calculator" }</a></li>
                         <li class="uk-parent"><a href="#timestampconverter">{ "Timestamp Converter" }</a></li>
+                        <li class="uk-parent"><a href="#chmodcalculator">{ "chmod Calculator" }</a></li>
                     </ul>
                 </div>
             </nav>

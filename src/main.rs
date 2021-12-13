@@ -1,5 +1,6 @@
 mod components;
 
+use crate::components::chmodcalculator::ChmodCalculator;
 use crate::components::ipcalculator::IpCalculator;
 use crate::components::navbar::Navbar;
 use crate::components::numcalculator::NumCalculator;
@@ -66,6 +67,13 @@ impl Component for Model {
                     </h3>
                     <div class="uk-container">
                         <TimestampConverter />
+                    </div>
+                    <h3 class="uk-heading-divider">
+                        <a href="#chmodcalculator"></a>
+                        { "chmod Calculator" }
+                    </h3>
+                    <div class="uk-container">
+                        <ChmodCalculator />
                     </div>
                 </div>
             </>

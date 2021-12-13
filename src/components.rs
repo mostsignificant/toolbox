@@ -1,3 +1,4 @@
+pub mod chmodcalculator;
 pub mod copytoclipboard;
 pub mod ipcalculator;
 pub mod navbar;
