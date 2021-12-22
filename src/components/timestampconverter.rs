@@ -60,7 +60,7 @@ impl Component for TimestampConverter {
                 self.epoch = value;
             }
             TimestampConverterMsg::ConvertHuman(value) => {
-                match value.parse::<DateTime<Utc>>() {
+                match NaiveDateTime::parse_from_str(&value, &self.format) {
                     Ok(dt) => self.epoch = dt.timestamp().to_string(),
                     Err(_) => {}
                 }
@@ -74,6 +74,7 @@ impl Component for TimestampConverter {
                     let ts = UNIX_EPOCH + Duration::from_secs(secs);
                     let dt = DateTime::<Utc>::from(ts);
                     self.human = dt.format(&self.format).to_string();
+                    self.epoch = dt.timestamp().to_string();
                 }
             }
             TimestampConverterMsg::SetNow => {
@@ -154,6 +155,7 @@ impl Component for TimestampConverter {
                             <button class="uk-button uk-button-default uk-button-large" 
                                     type="button" 
                                     id="now"
+                                    uk-tooltip="use current time"
                                     onclick=self.link.callback(|_| TimestampConverterMsg::SetNow)>
                                 {"Now"}
                             </button>

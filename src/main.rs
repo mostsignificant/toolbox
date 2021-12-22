@@ -39,7 +39,7 @@ impl Component for Model {
         html! {
             <>
                 <Navbar />
-                <div class="uk-container uk-margin-top">
+                <div class="uk-container uk-margin-top uk-margin-large-bottom">
                     <h3 class="uk-heading-divider">
                         <a href="#numcalculator"></a>
                         { "Numeric Calculator" }

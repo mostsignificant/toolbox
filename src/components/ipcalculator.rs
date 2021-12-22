@@ -176,6 +176,7 @@ impl Component for IpCalculator {
                             <button class="uk-button uk-button-default uk-button-large" 
                                     type="button" 
                                     id="myip"
+                                    uk-tooltip="use my IP address"
                                     onclick=self.link.callback(|_| IpCalculatorMsg::MyIP)>
                                 {"My IP"}
                             </button>

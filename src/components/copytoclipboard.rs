@@ -49,7 +49,8 @@ impl Component for CopyToClipboard {
         html! {
             <a class="uk-form-icon uk-form-icon-flip" 
                 href="#" 
-                uk-icon="icon: copy" 
+                uk-icon="icon: copy"
+                uk-tooltip="copy to clipboard"
                 onclick=self.link.callback(|_| CopyToClipboardMsg::Run)>
             </a>
         }
