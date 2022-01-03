@@ -135,7 +135,7 @@ impl Component for IpCalculator {
                     <div class="uk-form-controls">
                         <div class="uk-inline">
                             <CopyToClipboard from="ipv4" />
-                            <input class="uk-input uk-form-large"
+                            <input class="uk-input uk-form-large mousetrap"
                                    id="ipv4"
                                    type="text"
                                    oninput=self.link.callback(|d: InputData| IpCalculatorMsg::ConvertIpv4(d.value))

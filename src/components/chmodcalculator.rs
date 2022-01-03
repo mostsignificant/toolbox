@@ -156,7 +156,7 @@ impl Component for ChmodCalculator {
                     <div class="uk-form-controls">
                         <div class="uk-inline">
                             <CopyToClipboard from="octal" />
-                            <input class="uk-input uk-form-large"
+                            <input class="uk-input uk-form-large mousetrap"
                                    id="octal"
                                    type="text"
                                    value=self.octal.clone()

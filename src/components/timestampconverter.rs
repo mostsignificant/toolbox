@@ -45,7 +45,7 @@ impl Component for TimestampConverter {
     }
 
     fn change(&mut self, _props: Self::Properties) -> ShouldRender {
-        false
+        true
     }
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
@@ -98,7 +98,7 @@ impl Component for TimestampConverter {
                     <div class="uk-form-controls">
                         <div class="uk-inline uk-width-expand">
                             <CopyToClipboard from="epoch" />
-                            <input class="uk-input uk-form-large"
+                            <input class="uk-input uk-form-large mousetrap"
                                 id="epoch"
                                 type="text"
                                 oninput=self.link.callback(|d: InputData| TimestampConverterMsg::ConvertEpoch(d.value))

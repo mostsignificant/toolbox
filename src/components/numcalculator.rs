@@ -52,11 +52,10 @@ impl Component for NumCalculator {
         html! {
             <form class="uk-grid-small" uk-grid="">
                 <div class="uk-width-4-4">
-                    <label class="uk-form-label" for="expression">{ "Expression" }</label>
+                    <label class="uk-form-label" for="expression">{ "Math Expression" }</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input uk-form-large" 
+                        <input class="uk-input uk-form-large mousetrap" 
                                id="expression"
-                               placeholder="1+2*3" 
                                oninput=self.link.callback(|d: InputData| NumCalculatorMsg::Eval(d.value)) />
                     </div>
                 </div>

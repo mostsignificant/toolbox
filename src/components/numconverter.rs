@@ -119,7 +119,7 @@ impl Component for NumConverter {
                     <div class="uk-form-controls">
                         <div class="uk-inline">
                             <CopyToClipboard from="hex" />
-                            <input class="uk-input uk-form-large"
+                            <input class="uk-input uk-form-large mousetrap"
                                    id="hex"
                                    type="text"
                                    oninput=self.link.callback(|d: InputData| NumConverterMsg::ConvertHex(d.value))
