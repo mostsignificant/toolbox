@@ -90,7 +90,7 @@ impl Component for Model {
                     <h3 class="uk-heading-divider">
                         <a id="numcalculator"></a>
                         { "Numeric Calculator" }
-                        { self.view_shortcut_label("strg", "1") }
+                        { self.view_shortcut_label("ctrl", "1") }
                     </h3>
                     <div class="uk-container">
                         <NumCalculator />
@@ -98,7 +98,7 @@ impl Component for Model {
                     <h3 class="uk-heading-divider">
                         <a id="numconverter"></a>
                         { "Numeral Converter" }
-                        { self.view_shortcut_label("strg", "2") }
+                        { self.view_shortcut_label("ctrl", "2") }
                     </h3>
                     <div class="uk-container">
                         <NumConverter />
@@ -106,7 +106,7 @@ impl Component for Model {
                     <h3 class="uk-heading-divider">
                         <a id="ipcalculator"></a>
                         { "IP Calculator" }
-                        { self.view_shortcut_label("strg", "3") }
+                        { self.view_shortcut_label("ctrl", "3") }
                     </h3>
                     <div class="uk-container">
                         <IpCalculator />
@@ -114,7 +114,7 @@ impl Component for Model {
                     <h3 class="uk-heading-divider">
                         <a id="timestampconverter"></a>
                         { "Timestamp Converter" }
-                        { self.view_shortcut_label("strg", "4") }
+                        { self.view_shortcut_label("ctrl", "4") }
                     </h3>
                     <div class="uk-container">
                         <TimestampConverter />
@@ -122,7 +122,7 @@ impl Component for Model {
                     <h3 class="uk-heading-divider">
                         <a id="chmodcalculator"></a>
                         { "CHMOD Calculator" }
-                        { self.view_shortcut_label("strg", "5") }
+                        { self.view_shortcut_label("ctrl", "5") }
                     </h3>
                     <div class="uk-container">
                         <ChmodCalculator />

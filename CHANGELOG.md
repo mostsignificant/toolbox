@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.3
+
+- changed keyboard short cut labels' German "STRG" to English "CTRL"
+
 ## v1.1.2
 
 - added dark and light mode, keyboard shortcuts
