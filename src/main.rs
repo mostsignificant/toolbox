@@ -2,6 +2,7 @@ mod components;
 mod theme;
 
 use crate::components::chmodcalculator::ChmodCalculator;
+use crate::components::colorhelper::ColorHelper;
 use crate::components::ipcalculator::IpCalculator;
 use crate::components::navbar::Navbar;
 use crate::components::numcalculator::NumCalculator;
@@ -90,7 +91,6 @@ impl Component for Model {
                     <h3 class="uk-heading-divider">
                         <a id="numcalculator"></a>
                         { "Numeric Calculator" }
-                        { self.view_shortcut_label("ctrl", "1") }
                     </h3>
                     <div class="uk-container">
                         <NumCalculator />
@@ -98,7 +98,6 @@ impl Component for Model {
                     <h3 class="uk-heading-divider">
                         <a id="numconverter"></a>
                         { "Numeral Converter" }
-                        { self.view_shortcut_label("ctrl", "2") }
                     </h3>
                     <div class="uk-container">
                         <NumConverter />
@@ -106,7 +105,6 @@ impl Component for Model {
                     <h3 class="uk-heading-divider">
                         <a id="ipcalculator"></a>
                         { "IP Calculator" }
-                        { self.view_shortcut_label("ctrl", "3") }
                     </h3>
                     <div class="uk-container">
                         <IpCalculator />
@@ -114,7 +112,6 @@ impl Component for Model {
                     <h3 class="uk-heading-divider">
                         <a id="timestampconverter"></a>
                         { "Timestamp Converter" }
-                        { self.view_shortcut_label("ctrl", "4") }
                     </h3>
                     <div class="uk-container">
                         <TimestampConverter />
@@ -122,10 +119,16 @@ impl Component for Model {
                     <h3 class="uk-heading-divider">
                         <a id="chmodcalculator"></a>
                         { "CHMOD Calculator" }
-                        { self.view_shortcut_label("ctrl", "5") }
                     </h3>
                     <div class="uk-container">
                         <ChmodCalculator />
+                    </div>
+                    <h3 class="uk-heading-divider">
+                        <a id="colorhelper"></a>
+                        { "Color Helper" }
+                    </h3>
+                    <div class="uk-container">
+                        <ColorHelper />
                     </div>
                 </div>
             </>
@@ -150,18 +153,6 @@ impl Component for Model {
                 SelectedTheme::DarkMode  => self.theme.set_dark_mode(),
                 SelectedTheme::LightMode => self.theme.set_light_mode(),
             }
-        }
-    }
-}
-
-impl Model {
-    fn view_shortcut_label(&self, shortcut_first: &str, shortcut_second: &str) -> Html {
-        html! {
-            <span class="uk-align-right uk-text-small">
-                <span class="uk-label">{ shortcut_first }</span>
-                { " + " }
-                <span class="uk-label">{ shortcut_second }</span>
-            </span>
         }
     }
 }

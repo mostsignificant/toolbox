@@ -77,6 +77,7 @@ impl Component for Navbar {
                                     <li><a href="#ipcalculator">{ "IP Calculator" }</a></li>
                                     <li><a href="#timestampconverter">{ "Timestamp Converter" }</a></li>
                                     <li><a href="#chmodcalculator">{ "CHMOD Calculator" }</a></li>
+                                    <li><a href="#colorhelper">{ "Color Helper" }</a></li>
                                     <li class="uk-nav-header">{ "Theme" }</li>
                                     <li>
                                         <a href="#" onclick=self.link.callback(|_| NavbarMsg::SetDarkMode)>

@@ -133,30 +133,3 @@ function selectAndFocus(id) {
     element.setSelectionRange(0, 99999); /* for mobile */
     element.focus();
 }
-
-/* MOUSETRAP BINDINGS */
-
-Mousetrap.bind('ctrl+1', function (e) {
-    goto("numcalculator");
-    selectAndFocus("expression");
-});
-
-Mousetrap.bind('ctrl+2', function (e) {
-    goto("numconverter");
-    selectAndFocus("hex");
-});
-
-Mousetrap.bind('ctrl+3', function (e) {
-    goto("ipcalculator");
-    selectAndFocus("ipv4");
-});
-
-Mousetrap.bind('ctrl+4', function (e) {
-    goto("timestampconverter");
-    selectAndFocus("epoch");
-});
-
-Mousetrap.bind('ctrl+5', function (e) {
-    goto("chmodcalculator");
-    selectAndFocus("octal");
-});

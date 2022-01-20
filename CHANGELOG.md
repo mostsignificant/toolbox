@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.1.4
+
+- temporarily removed shortcuts because of conflicts with browser shortcuts
+- added color helper
+
 ## v1.1.3
 
 - changed keyboard short cut labels' German "STRG" to English "CTRL"
