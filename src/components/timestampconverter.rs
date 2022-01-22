@@ -98,7 +98,7 @@ impl Component for TimestampConverter {
                     <div class="uk-form-controls">
                         <div class="uk-inline uk-width-expand">
                             <CopyToClipboard from="epoch" />
-                            <input class="uk-input uk-form-large mousetrap"
+                            <input class="uk-input uk-form-large"
                                 id="epoch"
                                 type="text"
                                 oninput=self.link.callback(|d: InputData| TimestampConverterMsg::ConvertEpoch(d.value))
@@ -121,46 +121,40 @@ impl Component for TimestampConverter {
                 </div>
                 <div class="uk-width-1-3">
                     <label class="uk-form-label" for="format">{ "Format" }</label>
-                    <div class="uk-form-controls">
-                        <div class="uk-inline uk-width-expand">
-                            <button class="uk-button uk-button-default uk-button-large" type="button" id="format">
-                                { self.format.clone() }
-                            </button>
-                            <div uk-dropdown="">
-                                <ul class="uk-nav uk-dropdown-nav">
-                                    <li>
-                                        <a href="#" onclick=self.link.callback(|_| TimestampConverterMsg::ChangeFormat(DATETIMEFORMATS[0].to_string()))>
-                                            { DATETIMEFORMATS[0].to_string() }
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick=self.link.callback(|_| TimestampConverterMsg::ChangeFormat(DATETIMEFORMATS[1].to_string()))>
-                                            { DATETIMEFORMATS[1].to_string() }
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick=self.link.callback(|_| TimestampConverterMsg::ChangeFormat(DATETIMEFORMATS[2].to_string()))>
-                                            { DATETIMEFORMATS[2].to_string() }
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                    <div class="uk-inline uk-width-1-1">
+                        <button class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button" id="format">
+                            { self.format.clone() }
+                        </button>
+                        <div uk-dropdown="" class="uk-width-1-1">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li>
+                                    <a href="#" onclick=self.link.callback(|_| TimestampConverterMsg::ChangeFormat(DATETIMEFORMATS[0].to_string()))>
+                                        { DATETIMEFORMATS[0].to_string() }
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick=self.link.callback(|_| TimestampConverterMsg::ChangeFormat(DATETIMEFORMATS[1].to_string()))>
+                                        { DATETIMEFORMATS[1].to_string() }
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick=self.link.callback(|_| TimestampConverterMsg::ChangeFormat(DATETIMEFORMATS[2].to_string()))>
+                                        { DATETIMEFORMATS[2].to_string() }
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
                 <div class="uk-width-1-6">
                     <label class="uk-form-label" for="now">{ '\u{00a0}' }</label>
-                    <div class="uk-form-controls">
-                        <div class="uk-inline uk-width-expand">
-                            <button class="uk-button uk-button-default uk-button-large" 
-                                    type="button" 
-                                    id="now"
-                                    uk-tooltip="use current time"
-                                    onclick=self.link.callback(|_| TimestampConverterMsg::SetNow)>
-                                {"Now"}
-                            </button>
-                        </div>
-                    </div>
+                    <button class="uk-button uk-button-default uk-button-large uk-width-1-1" 
+                            type="button" 
+                            id="now"
+                            uk-tooltip="use current time"
+                            onclick=self.link.callback(|_| TimestampConverterMsg::SetNow)>
+                        {"Now"}
+                    </button>
                 </div>
             </form>
         }

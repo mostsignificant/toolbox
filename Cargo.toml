@@ -6,6 +6,7 @@ edition = "2021"
 [dependencies]
 chrono = "0.4.19"
 fasteval = "0.2.4"
+getrandom = { version = "0.2", features = ["js"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 wasm-bindgen = "0.2.78"

@@ -13,6 +13,10 @@ pub enum ColorHelperMsg {
     ConvertHex(String),
     ConvertRGB(String),
     ConvertCMYK(String),
+    Darker,
+    Lighter,
+    Complement,
+    Random,
 }
 
 #[derive(Clone, PartialEq, Properties)]
@@ -78,53 +82,146 @@ impl Component for ColorHelper {
                 }
                 self.cmyk = value;
             }
+            ColorHelperMsg::Darker => {
+                if self.hex.len() == 6 {
+                    if let (Ok(r), Ok(g), Ok(b)) = (u8::from_str_radix(&self.hex[0..2], 16),
+                                                    u8::from_str_radix(&self.hex[2..4], 16),
+                                                    u8::from_str_radix(&self.hex[4..6], 16)) {
+                        let rdarker = r as f32 - r as f32 * 0.25;
+                        let gdarker = g as f32 - g as f32 * 0.25;
+                        let bdarker = b as f32 - b as f32 * 0.25;
+
+                        return self.update(ColorHelperMsg::ConvertRGB(format!("{:?},{:?},{:?}", 
+                            rdarker as u8, gdarker as u8, bdarker as u8)));
+                    }
+                }
+            }
+            ColorHelperMsg::Lighter => {
+                if self.hex.len() == 6 {
+                    if let (Ok(r), Ok(g), Ok(b)) = (u8::from_str_radix(&self.hex[0..2], 16),
+                                                    u8::from_str_radix(&self.hex[2..4], 16),
+                                                    u8::from_str_radix(&self.hex[4..6], 16)) {
+                        let rdarker = if r == 0 { 4.0 } else { r as f32 + r as f32 * 0.25 };
+                        let gdarker = if r == 0 { 4.0 } else { g as f32 + g as f32 * 0.25 };
+                        let bdarker = if r == 0 { 4.0 } else { b as f32 + b as f32 * 0.25 };
+
+                        return self.update(ColorHelperMsg::ConvertRGB(format!("{:?},{:?},{:?}", 
+                            rdarker as u8, gdarker as u8, bdarker as u8)));
+                    }
+                }
+            }
+            ColorHelperMsg::Complement => {
+                if self.hex.len() == 6 {
+                    if let (Ok(r), Ok(g), Ok(b)) = (u8::from_str_radix(&self.hex[0..2], 16),
+                                                    u8::from_str_radix(&self.hex[2..4], 16),
+                                                    u8::from_str_radix(&self.hex[4..6], 16)) {
+                        let rcomplement = 255 - r;
+                        let gcomplement = 255 - g;
+                        let bcomplement = 255 - b;
+
+                        return self.update(ColorHelperMsg::ConvertRGB(format!("{:?},{:?},{:?}", 
+                            rcomplement as u8, gcomplement as u8, bcomplement as u8)));
+                    }
+                }
+            }
+            ColorHelperMsg::Random => {
+                let mut buf = [0u8; 3];
+                getrandom::getrandom(&mut buf).unwrap();
+
+                return self.update(ColorHelperMsg::ConvertRGB(format!("{:?},{:?},{:?}", buf[0], buf[1], buf[2])));
+            }
         }
         true
     }
 
     fn view(&self) -> Html {
         html! {
-            <form class="uk-grid-small uk-form-stacked" uk-grid="">
-                <div class="uk-width-1-4">
-                    <label class="uk-form-label" for="hex">{ "Hex" }</label>
-                    <div class="uk-form-controls">
-                        <div class="uk-inline">
-                            <CopyToClipboard from="hex" />
-                            <input class="uk-input uk-form-large mousetrap"
-                                   id="hex"
-                                   type="text"
-                                   oninput=self.link.callback(|d: InputData| ColorHelperMsg::ConvertHex(d.value))
-                                   value=self.hex.clone() />
+            <>
+                <form class="uk-grid-small uk-form-stacked" uk-grid="">
+                    <div class="uk-width-1-4">
+                        <label class="uk-form-label" for="hex">{ "Hex" }</label>
+                        <div class="uk-form-controls">
+                            <div class="uk-inline">
+                                <CopyToClipboard from="hex" />
+                                <input class="uk-input uk-form-large"
+                                    id="hex"
+                                    type="text"
+                                    oninput=self.link.callback(|d: InputData| ColorHelperMsg::ConvertHex(d.value))
+                                    value=self.hex.clone() />
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="uk-width-1-4">
-                    <label class="uk-form-label" for="rgb">{ "RGB" }</label>
-                    <div class="uk-form-controls">
-                        <div class="uk-inline">
-                            <CopyToClipboard from="rgb" />
-                            <input class="uk-input uk-form-large mousetrap"
-                                   id="rgb"
-                                   type="text"
-                                   oninput=self.link.callback(|d: InputData| ColorHelperMsg::ConvertRGB(d.value))
-                                   value=self.rgb.clone() />
+                    <div class="uk-width-1-4">
+                        <label class="uk-form-label" for="rgb">{ "RGB" }</label>
+                        <div class="uk-form-controls">
+                            <div class="uk-inline">
+                                <CopyToClipboard from="rgb" />
+                                <input class="uk-input uk-form-large"
+                                    id="rgb"
+                                    type="text"
+                                    oninput=self.link.callback(|d: InputData| ColorHelperMsg::ConvertRGB(d.value))
+                                    value=self.rgb.clone() />
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="uk-width-1-4">
-                    <label class="uk-form-label" for="cmyk">{ "CMYK" }</label>
-                    <div class="uk-form-controls">
-                        <div class="uk-inline">
-                            <CopyToClipboard from="cmyk" />
-                            <input class="uk-input uk-form-large mousetrap"
-                                   id="cmyk"
-                                   type="text"
-                                   oninput=self.link.callback(|d: InputData| ColorHelperMsg::ConvertCMYK(d.value))
-                                   value=self.cmyk.clone() />
+                    <div class="uk-width-1-3">
+                        <label class="uk-form-label" for="cmyk">{ "CMYK" }</label>
+                        <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-expand">
+                                <CopyToClipboard from="cmyk" />
+                                <input class="uk-input uk-form-large"
+                                    id="cmyk"
+                                    type="text"
+                                    oninput=self.link.callback(|d: InputData| ColorHelperMsg::ConvertCMYK(d.value))
+                                    value=self.cmyk.clone() />
+                            </div>
                         </div>
                     </div>
+                    <div class="uk-width-1-6">
+                        <label class="uk-form-label" for="random">{ '\u{00a0}' }</label>
+                        <button class="uk-button uk-button-default uk-button-large uk-width-1-1" 
+                                type="button" 
+                                id="random"
+                                uk-tooltip="pick a random color"
+                                onclick=self.link.callback(|_| ColorHelperMsg::Random)>
+                            {"Random"}
+                        </button>
+                    </div>
+                </form>
+                <div class="uk-container uk-margin-top">
+                    <div class="uk-tile" style="background-color:#".to_string() + &self.hex>
+                    </div>
                 </div>
-            </form>
+                <form class="uk-grid-small uk-form-stacked uk-margin-top" uk-grid="">
+                    <div class="uk-width-1-6">
+                        <button class="uk-button uk-button-default uk-button-large uk-width-1-1" 
+                                type="button" 
+                                id="darker"
+                                uk-tooltip="go to 1/4 darker color"
+                                onclick=self.link.callback(|_| ColorHelperMsg::Darker)>
+                            {"Darker"}
+                        </button>
+                    </div>
+                    <div class="uk-width-1-6">
+                        <button class="uk-button uk-button-default uk-button-large uk-width-1-1" 
+                                type="button" 
+                                id="lighter"
+                                uk-tooltip="go to 1/4 lighter color"
+                                onclick=self.link.callback(|_| ColorHelperMsg::Lighter)>
+                            {"Lighter"}
+                        </button>
+                    </div>
+                    <div class="uk-width-1-6">
+                        <button class="uk-button uk-button-default uk-button-large uk-width-1-1" 
+                                type="button" 
+                                id="complement"
+                                uk-tooltip="switch to complementary color"
+                                onclick=self.link.callback(|_| ColorHelperMsg::Complement)>
+                            {"Complement"}
+                        </button>
+                    </div>
+                </form>
+            </>
         }
     }
 }

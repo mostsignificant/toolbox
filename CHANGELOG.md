@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1.5
+
+- color helper: darker, lighter, complement, random button
+- color helper: color field
+- layout refactoring
+
 ## v1.1.4
 
 - temporarily removed shortcuts because of conflicts with browser shortcuts

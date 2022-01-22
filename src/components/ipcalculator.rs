@@ -135,7 +135,7 @@ impl Component for IpCalculator {
                     <div class="uk-form-controls">
                         <div class="uk-inline">
                             <CopyToClipboard from="ipv4" />
-                            <input class="uk-input uk-form-large mousetrap"
+                            <input class="uk-input uk-form-large"
                                    id="ipv4"
                                    type="text"
                                    oninput=self.link.callback(|d: InputData| IpCalculatorMsg::ConvertIpv4(d.value))
@@ -171,17 +171,13 @@ impl Component for IpCalculator {
                 </div>
                 <div class="uk-width-1-6">
                     <label class="uk-form-label" for="myip">{ '\u{00a0}' }</label>
-                    <div class="uk-form-controls">
-                        <div class="uk-inline uk-width-expand">
-                            <button class="uk-button uk-button-default uk-button-large" 
-                                    type="button" 
-                                    id="myip"
-                                    uk-tooltip="use my IP address"
-                                    onclick=self.link.callback(|_| IpCalculatorMsg::MyIP)>
-                                {"My IP"}
-                            </button>
-                        </div>
-                    </div>
+                    <button class="uk-button uk-button-default uk-button-large uk-width-1-1" 
+                            type="button" 
+                            id="myip"
+                            uk-tooltip="use my IP address"
+                            onclick=self.link.callback(|_| IpCalculatorMsg::MyIP)>
+                        {"My IP"}
+                    </button>
                 </div>
             </form>
         }
